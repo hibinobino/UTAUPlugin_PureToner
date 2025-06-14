@@ -1,0 +1,29 @@
+﻿<Window x:Class="PureTonerPlugin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PureTonerPlugin"
+        mc:Ignorable="d"
+        Title="純正律プラグイン PureToner" Height="483.492" Width="471.088" SizeToContent="WidthAndHeight" WindowStartupLocation="Manual" ResizeMode="NoResize" ContentRendered="Window_ContentRendered">
+    <Grid>
+        <GroupBox x:Name="groupBox" Header="設定" Height="219" Margin="22,14,20,0" VerticalAlignment="Top" Width="423" Grid.ColumnSpan="2">
+            <Grid>
+                <TextBox x:Name="resamplerpath" Height="23" Margin="20,35,100,0" TextWrapping="NoWrap" VerticalAlignment="Top"/>
+                <Label x:Name="label" Content="好きなResamplerエンジン" HorizontalAlignment="Left" Margin="20,9,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label_Copy" Content="PureToner パス" HorizontalAlignment="Left" Margin="20,69,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="puretonerpath" Height="23" Margin="20,95,100,0" TextWrapping="NoWrap" VerticalAlignment="Top"/>
+                <Label x:Name="label_Copy1" Content="このパスをコピーしてUTAUプロジェクト設定のResampler欄に入力してください。" HorizontalAlignment="Left" Margin="20,118,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="browsebutton" Content="ブラウズ..." HorizontalAlignment="Right" Margin="0,35,20,0" VerticalAlignment="Top" Width="75" Height="23" Click="browsebutton_Click"/>
+                <Button x:Name="copybutton" Content="コピー" HorizontalAlignment="Right" Margin="0,95,20,0" VerticalAlignment="Top" Width="75" Height="23" Click="copybutton_Click"/>
+                <Button x:Name="button1" Content="OK" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Height="23" Margin="168,162,168,0" Click="button1_Click"/>
+            </Grid>
+        </GroupBox>
+
+        <Label x:Name="label_Copy3" Content="純正律プラグイン・PureTonerの使い方" HorizontalAlignment="Left" Margin="40,252,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label x:Name="label_Copy4" Content="編集しているustの調(長調・短調)を知る必要があります。&#xA;調がわかったら、フラグに調フラグを書き加えます。&#xA;例：Cmaj Amin C#maj A#min (フラットはシャープで代用)&#xA;&#xA;調フラグを付けて出力を実行すると、PureTonerがtフラグを計算し、&#xA;調フラグと置き換えて指定のResamplerに渡します。&#xA;調フラグを付けなかった場合、そのまま指定のResamplerで出力します(平均律)。&#xD;&#xA;&#xD;&#xA;※tフラグは1cent単位を想定しています。" Margin="40,278,40,40" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+
+
+
+    </Grid>
+</Window>
