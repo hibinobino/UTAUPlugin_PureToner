@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-//using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 
@@ -29,28 +18,29 @@ namespace PureTonerPlugin
 
 		private void Window_ContentRendered(object sender, EventArgs e)
 		{
-			string thispath = Environment.GetCommandLineArgs()[0];
-			string thisdir = Path.GetDirectoryName(thispath);
-			string txtpath = Path.Combine(thisdir, "engine.txt");
+			string runtimePath = Environment.GetCommandLineArgs()[0];
+			string runtimeDir = Path.GetDirectoryName(runtimePath);
+			string txtPath = Path.Combine(runtimeDir, "engine.txt");
+
 			//engine.txtが存在すればresampler情報を入力する
-			if (File.Exists(txtpath))
+			if (File.Exists(txtPath))
 			{
-				using (StreamReader sr = new StreamReader(txtpath, Encoding.UTF8))
+				using (StreamReader sr = new StreamReader(txtPath, Encoding.UTF8))
 				{
 					while (!sr.EndOfStream)
 					{
 						string line = sr.ReadLine();
-						if (line != "") resamplerpath.Text = line;
+						if (line != "") textboxResamplerPath.Text = line;	//情報があればテキストボックスに表示する
 					}
 				}
 			}
 			//puretonerのパスを表示する
-			puretonerpath.Text = Path.Combine(thisdir, "PureToner.exe");
-			puretonerpath.IsReadOnly = true;
+			textboxPureTonerPath.Text = Path.Combine(runtimeDir, "PureToner.exe");		//コンソールのパスをテキストボックスに表示する
+			textboxPureTonerPath.IsReadOnly = true;		//コピー専用なので読み取り専用にする
 		}
 		private void copybutton_Click(object sender, RoutedEventArgs e)
 		{
-			Clipboard.SetData(DataFormats.Text, (string)puretonerpath.Text);
+			Clipboard.SetData(DataFormats.Text, (string)textboxPureTonerPath.Text);		//コンソールのパスをコピー
 		}
 
 		private void browsebutton_Click(object sender, RoutedEventArgs e)
@@ -60,34 +50,37 @@ namespace PureTonerPlugin
 			open.Filter = "UTAU用エンジン(.exe)|*.exe";
 			if (open.ShowDialog() == true)
 			{
-				// 選択されたファイル名 (ファイルパス) をメッセージボックスに表示
-				resamplerpath.Text = open.FileName;
+				// 選択されたファイル名 (ファイルパス) をテキストボックスに表示
+				textboxResamplerPath.Text = open.FileName;
 			}
 		}
 
-		private void button1_Click(object sender, RoutedEventArgs e)
+		private void buttonOK_Click(object sender, RoutedEventArgs e)
 		{
-			string thispath = Environment.GetCommandLineArgs()[0];
-			string thisdir = Path.GetDirectoryName(thispath);
-			string txtpath = Path.Combine(thisdir, "engine.txt");
+			string runtimePath = Environment.GetCommandLineArgs()[0];
+			string runtimeDir = Path.GetDirectoryName(runtimePath);
+			string txtPath = Path.Combine(runtimeDir, "engine.txt");
 
-			//OK
-			if (resamplerpath.Text == puretonerpath.Text || Path.GetFileName(resamplerpath.Text) == "PureToner.exe")
+			//入力確認
+			if (textboxResamplerPath.Text == textboxPureTonerPath.Text || Path.GetFileName(textboxResamplerPath.Text) == "PureToner.exe")
 			{
+				//コンソールをResamplerに指定禁止
 				MessageBox.Show("ResamplerにPureTonerを指定できません！", "エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return;
-			}else if (!File.Exists(resamplerpath.Text))
+			}else if (!File.Exists(textboxResamplerPath.Text))
 			{
+				//ファイルが存在しない場合
 				MessageBox.Show("Resamplerの指定が存在しません！", "エラー",MessageBoxButton.OK, MessageBoxImage.Warning);
 				return;
 			}
 
-			using (StreamWriter sr = new StreamWriter(txtpath, false, Encoding.UTF8))
+			//入力確認終わり、engine.txtに書き込む
+			using (StreamWriter sr = new StreamWriter(txtPath, false, Encoding.UTF8))
 			{
-				sr.WriteLine(resamplerpath.Text);
+				sr.WriteLine(textboxResamplerPath.Text);
 			}
 
-			this.Close();
+			Close();
 		}
 	}
 }
