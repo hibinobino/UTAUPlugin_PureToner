@@ -8,3 +8,6 @@
 
 ### 実行ファイル(.uar)の配布場所
 [ウェブサイト](https://hibinobino.main.jp/utau/plugins/#puretoner)にて配布しています。
+
+### サンプル動画
+[ニコニコ動画](https://www.nicovideo.jp/watch/sm39047824)
