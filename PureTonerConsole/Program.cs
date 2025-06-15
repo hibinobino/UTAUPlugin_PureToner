@@ -128,7 +128,10 @@ namespace PureTonerConsole
             }
             catch
             {
-                Console.WriteLine("engine.txtが見つかりません。");
+                Console.WriteLine("engine.txtが見つかりません。プラグインで出力エンジンを指定してください。");
+                Console.WriteLine("Enterキーで終了します。");
+				Console.ReadLine();	//Enterキー待ち
+				Environment.Exit(0);	//コンソールを終了
             }
             return engine;
         }
