@@ -8,7 +8,7 @@ using System.IO;
 //※エンジン部分
 //これをUTAUエンジンに指定することでこの中でtフラグを付与し、
 //engine.txtで指定されたUTAUエンジンに渡して疑似的に純正律を出力させる。
-namespace PureTonerConsole
+namespace PureToner
 {
 	class Program
 	{

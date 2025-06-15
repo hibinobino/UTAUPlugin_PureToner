@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B16341B5-AF78-4221-822B-5CDDDB1727D9}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>PureTonerConsole</RootNamespace>
-    <AssemblyName>PureTonerConsole</AssemblyName>
+    <RootNamespace>PureToner</RootNamespace>
+    <AssemblyName>PureToner</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
